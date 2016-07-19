@@ -54,6 +54,8 @@ drush hostmaster-install -y --strict=0 $HOSTNAME \
   # AEGIR_VERSION to 'docker' to simplify the upgrade process.
 
 # Generate an SSH key
+ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+drush @hostmaster vset devshop_public_key \"$(cat ~/.ssh/id_rsa.pub)\" --yes
 
 # Output a login link. If hostmaster is already installed, `drush hostmaster-install` doesn't give us a link.
 drush @hostmaster uli
