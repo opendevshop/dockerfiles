@@ -6,8 +6,6 @@ This container launches the Devmaster front-end control panel for devshop.
 
 # How to use this image?
 
-## Manual Launch
-
 ## Manual launch:
 
     $ docker run --name database -d -e MYSQL_ROOT_PASSWORD=12345 mariadb 
