@@ -14,10 +14,11 @@ services:
     depends_on:
       - database
     environment:
-      VIRTUAL_HOST: devshop.local.computer
       MYSQL_ROOT_PASSWORD: strongpassword
 
   database:
     image: mariadb
+    logging:
+      driver: none
     environment:
       MYSQL_ROOT_PASSWORD: strongpassword

@@ -10,12 +10,9 @@ ENV AEGIR_PROFILE devmaster
 ENV AEGIR_VERSION 1.x
 
 USER root
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
-RUN mkdir /var/log/aegir
-RUN chown aegir:aegir /var/log/aegir
+COPY devshop-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/devshop-entrypoint.sh
 
 USER aegir
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["devshop-entrypoint.sh"]
 CMD ["drush @hostmaster hosting-queued"]
