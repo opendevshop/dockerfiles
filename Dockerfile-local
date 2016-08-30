@@ -13,9 +13,6 @@ USER root
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-RUN mkdir /var/log/aegir
-RUN chown aegir:aegir /var/log/aegir
-
 USER aegir
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["drush @hostmaster hosting-queued"]
