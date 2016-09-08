@@ -7,7 +7,9 @@ ENV AEGIR_CLIENT_EMAIL aegir@aegir.docker
 # Change this for released versions
 ENV AEGIR_MAKEFILE https://raw.githubusercontent.com/opendevshop/devshop/1.x/build-devmaster.make
 ENV AEGIR_PROFILE devmaster
-ENV AEGIR_VERSION 1.x
+
+# Must be fixed across versions so we can upgrade containers.
+ENV AEGIR_HOSTMASTER_ROOT /var/aegir/devmaster
 
 USER root
 COPY docker-entrypoint.sh /usr/local/bin/
