@@ -8,12 +8,9 @@ ENV AEGIR_CLIENT_EMAIL aegir@aegir.docker
 ENV AEGIR_MAKEFILE https://raw.githubusercontent.com/opendevshop/devshop/1.x/build-devmaster.make
 ENV AEGIR_PROFILE devmaster
 
-# Must be fixed across versions so we can upgrade containers.
-ENV AEGIR_HOSTMASTER_ROOT /var/aegir/devmaster
+ENV AEGIR_HOSTMASTER_ROOT /var/aegir/devmaster-1.x
 
 USER root
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Install devshop CLI
 RUN \
