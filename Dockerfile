@@ -20,5 +20,3 @@ RUN \
   ln -s /usr/share/devshop/bin/devshop /usr/local/bin/devshop
 
 USER aegir
-ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["drush @hostmaster hosting-queued"]
