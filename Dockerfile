@@ -15,6 +15,13 @@ USER root
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
+# Install devshop CLI
+RUN \
+  git clone https://github.com/opendevshop/devshop /usr/share/devshop && \
+  cd /usr/share/devshop && \
+  composer install && \
+  ln -s /usr/share/devshop/bin/devshop /usr/local/bin/devshop
+
 USER aegir
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["drush @hostmaster hosting-queued"]
