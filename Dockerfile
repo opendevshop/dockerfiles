@@ -12,6 +12,10 @@ ENV AEGIR_HOSTMASTER_ROOT /var/aegir/devmaster-1.x
 
 USER root
 
+# Copy our own run-tests.sh file.
+COPY run-tests.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/run-tests.sh
+
 # Install devshop CLI
 RUN \
   git clone https://github.com/opendevshop/devshop /usr/share/devshop && \
