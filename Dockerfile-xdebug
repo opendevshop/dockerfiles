@@ -1,33 +1,11 @@
 FROM aegir/hostmaster:xdebug
 
-ARG AEGIR_UID=1000
-ENV AEGIR_UID ${AEGIR_UID:-1000}
-
-# You may override
-ENV AEGIR_CLIENT_NAME admin
-ENV AEGIR_CLIENT_EMAIL aegir@aegir.docker
-
 # Change this for released versions
 ENV AEGIR_MAKEFILE https://raw.githubusercontent.com/opendevshop/devshop/1.x/build-devmaster.make
 ENV AEGIR_PROFILE devmaster
-
 ENV AEGIR_HOSTMASTER_ROOT /var/aegir/devmaster-1.x
 
 USER root
-
-# Install the docker client into the container.
-RUN wget -q https://get.docker.com/builds/Linux/x86_64/docker-1.9.1 && \
-    cp docker-1.9.1 /usr/bin/docker && \
-    chmod +x /usr/bin/docker
-
-RUN  wget -q "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" && \
-    cp "docker-compose-$(uname -s)-$(uname -m)" /usr/bin/docker-compose && \
-    chmod +x /usr/bin/docker-compose
-
-# Add the docker group and add aegir to it.
-ARG DOCKER_GID=1001
-RUN addgroup --gid $DOCKER_GID docker
-RUN adduser aegir docker
 
 # Copy our own run-tests.sh file.
 COPY run-tests.sh /usr/local/bin/
