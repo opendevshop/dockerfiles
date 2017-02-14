@@ -1,16 +1,8 @@
-FROM aegir/hostmaster
-
-ARG AEGIR_UID=1000
-ENV AEGIR_UID ${AEGIR_UID:-1000}
-
-# You may override
-ENV AEGIR_CLIENT_NAME admin
-ENV AEGIR_CLIENT_EMAIL aegir@aegir.docker
+FROM aegir/hostmaster:privileged
 
 # Change this for released versions
 ENV AEGIR_MAKEFILE https://raw.githubusercontent.com/opendevshop/devshop/1.x/build-devmaster.make
 ENV AEGIR_PROFILE devmaster
-
 ENV AEGIR_HOSTMASTER_ROOT /var/aegir/devmaster-1.x
 
 USER root

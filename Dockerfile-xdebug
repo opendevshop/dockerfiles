@@ -1,21 +1,16 @@
-FROM aegir/hostmaster:xdebug
-
-# Change this for released versions
-ENV AEGIR_MAKEFILE https://raw.githubusercontent.com/opendevshop/devshop/1.x/build-devmaster.make
-ENV AEGIR_PROFILE devmaster
-ENV AEGIR_HOSTMASTER_ROOT /var/aegir/devmaster-1.x
+FROM devshop/devmaster
 
 USER root
 
-# Copy our own run-tests.sh file.
-COPY run-tests.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/run-tests.sh
+RUN apt-get update && \
+  apt-get install php5-dev -y -qq
 
-# Install devshop CLI
-RUN \
-  git clone https://github.com/opendevshop/devshop /usr/share/devshop && \
-  cd /usr/share/devshop && \
-  composer install && \
-  ln -s /usr/share/devshop/bin/devshop /usr/local/bin/devshop
+RUN yes | pecl install xdebug \
+        && echo "zend_extension=xdebug.so" >> /etc/php5/mods-available/xdebug.ini \
+        && echo "xdebug.remote_host=172.17.0.1" >> /etc/php5/mods-available/xdebug.ini \
+        && echo "xdebug.remote_enable=on" >> /etc/php5/mods-available/xdebug.ini \
+        && echo "xdebug.remote_autostart=off" >> /etc/php5/mods-available/xdebug.ini \
+        && ln -s /etc/php5/mods-available/xdebug.ini /etc/php5/apache2/conf.d/00-xdebug.ini \
+        && ln -s /etc/php5/mods-available/xdebug.ini /etc/php5/cli/conf.d/00-xdebug.ini
 
 USER aegir
