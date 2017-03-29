@@ -1,0 +1,16 @@
+FROM aegir/hostmaster
+
+ENV AEGIR_PROFILE devmaster
+ENV AEGIR_VERSION 1.0.0-beta10
+ENV AEGIR_MAKEFILE https://raw.githubusercontent.com/opendevshop/devshop/1.0.0-beta10/build-devmaster.make
+
+ENV PROVISION_VERSION 7.x-3.10
+
+ENV AEGIR_HOSTMASTER_ROOT /var/aegir/$AEGIR_PROFILE-$AEGIR_VERSION
+
+# Prepare next hostmaster platform.
+# This is done in the Dockerfile so that we can ship upgrades with the codebase, then run hostmaster-migrate when a new
+# version is detected.
+
+RUN drush make $AEGIR_MAKEFILE $AEGIR_HOSTMASTER_ROOT
+RUN drush dl provision-$PROVISION_VERSION --destination=/var/aegir/.drush/commands -y
