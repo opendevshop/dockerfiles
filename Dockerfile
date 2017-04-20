@@ -1,4 +1,4 @@
-FROM aegir/hostmaster:privileged
+FROM aegir/hostmaster
 
 # Change this for released versions
 ENV AEGIR_MAKEFILE https://raw.githubusercontent.com/opendevshop/devshop/1.x/build-devmaster.make
