@@ -11,7 +11,7 @@ This container launches the Devmaster front-end control panel for devshop.
 ## Manual launch:
 
     $ docker run --name database -d -e MYSQL_ROOT_PASSWORD=12345 mariadb 
-    $ docker run --name hostmaster --hostname aegir.local.computer -e MYSQL_ROOT_PASSWORD=12345 --link database:mysql -p 80:80 aegir/hostmaster
+    $ docker run --name hostmaster --hostname aegir.local.computer -e MYSQL_ROOT_PASSWORD=12345 --link database:mysql -p 80:80 devshop/devmaster
     
 ## docker-compose launch:
 
